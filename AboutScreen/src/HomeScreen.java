@@ -1,7 +1,7 @@
 
 import javax.swing.*;
 import java.awt.*;
-public class HomeScrreen {
+public class HomeScreen {
 	public static void main(String args[]) {
 
         //Creating the Frame
@@ -24,11 +24,11 @@ public class HomeScrreen {
         JLabel label = new JLabel("File");
         JTextField tf = new JTextField(10); 
         JButton send = new JButton("Enter");
-        JButton reset = new JButton("About");
+        JButton about = new JButton("About");
         panel.add(label); 
         panel.add(tf);
         panel.add(send);
-        panel.add(reset);
+        panel.add(about);
 
         
         JTextArea ta = new JTextArea();
