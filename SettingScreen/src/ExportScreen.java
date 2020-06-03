@@ -2,6 +2,11 @@ import java.awt.BorderLayout;
 
 import javax.swing.*;
 
+/**
+ * very basic export screen, no functionality yet
+ * @author Patrick Schmeichel
+ *
+ */
 public class ExportScreen extends JFrame
 {
     private final int HEIGHT = 150, WIDTH = 300;
@@ -31,9 +36,5 @@ public class ExportScreen extends JFrame
         setTitle("Export Settings");
         setSize(WIDTH,HEIGHT);
         setVisible(true);
-    }
-    
-    public static void main(String[] args) {
-        new ExportScreen();
     }
 }
