@@ -10,10 +10,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
-import javax.swing.ImageIcon;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
+
 
 
 
@@ -23,7 +24,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @upload screen version
  */
 
-public class uploadScreen extends JFrame {
+public class uploadScreen extends JFrame{
     
     private static final long serialVersionUID = 1L;
     /**
@@ -55,8 +56,14 @@ public class uploadScreen extends JFrame {
      * upload button
      */
     private JButton uploadB;
-    
+    /**
+     * the button allow user to open the file before upload it
+     */
     private JButton previewFile;
+    /**
+     * Allow user go back to previous page
+     */
+    private JButton Back;
     /**
      * Files that will contain the source location of a file and the destination respectively
      */
@@ -72,7 +79,7 @@ public class uploadScreen extends JFrame {
      */
    
     public uploadScreen() {
-        setTitle("Upload Screen");
+    	setTitle("Upload Screen");
         setVisible(true);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
@@ -86,6 +93,7 @@ public class uploadScreen extends JFrame {
         uploadW = new JButton("Website select");
         previewFile = new JButton("Open Files");
         uploadB = new JButton("Upload");
+        Back = new JButton("Back to previous page");
         start();
     }
     
@@ -132,7 +140,7 @@ public class uploadScreen extends JFrame {
         uploadW.setSize(36,36);
         uploadW.addActionListener(new ActionListener() { // action for websites
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e){
                 review.setText("Enter all the links and website below:");
                 review.setEditable(true);
             }
@@ -243,6 +251,19 @@ public class uploadScreen extends JFrame {
             }               
         });
         upload.add(uploadB);
+        Back.setSize(36,36);
+        Back.addActionListener(new ActionListener() {
+        	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				HomeScreen prev = new HomeScreen(); 
+				prev.setVisible(true);
+				
+			}
+        
+        });
+        upload.add(Back);
         add(upload, BorderLayout.SOUTH);
     }
     
@@ -257,8 +278,6 @@ public class uploadScreen extends JFrame {
         Path dest = Paths.get(to);
         Files.copy(src, dest, StandardCopyOption.REPLACE_EXISTING);
     }
-    
-   
   
 }
 /**
