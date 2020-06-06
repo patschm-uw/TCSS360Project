@@ -1,18 +1,27 @@
+/**
+ * @author Hamza Shanle
+ *
+ */
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
-public class SettingScreen extends JFrame {
+public class SettingScreen extends JFrame implements ActionListener {
    /**
 	 * serialVerison
 	 */
 	private static final long serialVersionUID = 1L;
-   JPanel panel1;
-   JPanel panel2;
-   JLabel name_label, email_label, message;
-   JTextField name_text;
-   JTextField email_text;
-   JButton submit;
-   JButton recieve;
-   JButton export;
+	private JPanel panel1;
+    private JPanel panel2;
+    private JLabel name_label, email_label;
+    private JTextField name_text;
+    private JTextField email_text;
+    private JButton recieve;
+    private JButton export;
+    private ImportScreen iScreen;
+    private ExportScreen eScreen;
    SettingScreen() {
       // Name Label
       name_label = new JLabel();
@@ -23,7 +32,6 @@ public class SettingScreen extends JFrame {
       email_label.setText("Email:");
       email_text = new JTextField(10);
       // Buttons
-      submit = new JButton("SUBMIT");
       export = new JButton("EXPORT");
       recieve = new JButton("IMPORT");
       panel1 = new JPanel();
@@ -35,7 +43,9 @@ public class SettingScreen extends JFrame {
       panel1.add(email_text);
       panel2.add(export);
       panel2.add(recieve);
-      panel2.add(submit);
+      recieve.addActionListener(this);
+      
+      
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       add(panel1, BorderLayout.CENTER);
       add(panel2, BorderLayout.AFTER_LAST_LINE);
@@ -43,6 +53,16 @@ public class SettingScreen extends JFrame {
       setSize(400,200);
       setVisible(true);
    }
+	  @Override
+	  public void actionPerformed(ActionEvent e) {
+		  if (e.getSource() == recieve) {
+			  iScreen = new ImportScreen();
+		  }
+		  if (e.getSource() == export) {
+			  eScreen = new ExportScreen();
+		  }
+	  }	
+
    public static void main(String[] args) {
       new SettingScreen();
    }

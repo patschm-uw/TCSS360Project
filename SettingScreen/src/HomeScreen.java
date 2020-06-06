@@ -16,11 +16,11 @@ public class HomeScreen implements ActionListener {
     private JMenuItem m11, m22;
     private JPanel panel;
     private JLabel label;
-    private JTextField tf;
     private JButton send, about, upload;
     private JTextArea ta;
     private uploadScreen uScreen;
     private About aScreen;
+    private RoomList list;
     
 	public HomeScreen() {
 
@@ -41,13 +41,12 @@ public class HomeScreen implements ActionListener {
         m1.add(m22);
 
         panel = new JPanel(); 
-        label = new JLabel("File");
-        tf = new JTextField(10); 
+        label = new JLabel("File"); 
         send = new JButton("Enter");
         about = new JButton("About");
         upload = new JButton("Upload");
         panel.add(label); 
-        panel.add(tf);
+        panel.add(list);
         panel.add(send);
         panel.add(about);
         about.addActionListener(this);
