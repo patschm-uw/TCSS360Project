@@ -118,7 +118,7 @@ public class RoomList extends JPanel
         }
  
 		public void actionPerformed(ActionEvent e) {
-            String name = room.getTitle();
+            String name = roomName.getText();
  
             //User didn't type in a unique name...
             if (name.equals("") || alreadyInList(name)) {
@@ -134,6 +134,7 @@ public class RoomList extends JPanel
             } else {           
                 index++;
             }
+            room = new Room(roomName.getText(), path.getText());
  
             listModel.insertElementAt(room.getTitle(), index);
  
