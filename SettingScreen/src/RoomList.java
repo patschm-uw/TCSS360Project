@@ -182,11 +182,11 @@ public class RoomList extends JPanel
         if (e.getValueIsAdjusting() == false) {
  
             if (list.getSelectedIndex() == -1) {
-            //No selection, disable fire button.
+
                 deleteButton.setEnabled(false);
  
             } else {
-            //Selection, enable the fire button.
+
                 deleteButton.setEnabled(true);
             }
         }
