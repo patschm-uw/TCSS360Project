@@ -9,6 +9,8 @@
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
 import javax.swing.event.*;
  
@@ -61,6 +63,10 @@ public class RoomList extends JPanel
         path = new JTextField(10);
         path.addActionListener(addListener);
         path.getDocument().addDocumentListener(addListener);
+        
+        room = new Room(roomName.getText(), path.getText());
+        ArrayList<Object> listOfRooms = new ArrayList<Object>();
+        listOfRooms.add(room);
 
  
         //Create a panel that uses BoxLayout.
@@ -112,7 +118,7 @@ public class RoomList extends JPanel
         }
  
 		public void actionPerformed(ActionEvent e) {
-            String name = roomName.getText();
+            String name = room.getTitle();
  
             //User didn't type in a unique name...
             if (name.equals("") || alreadyInList(name)) {
@@ -128,7 +134,6 @@ public class RoomList extends JPanel
             } else {           
                 index++;
             }
-            room = new Room(roomName.getText(), path.getText());
  
             listModel.insertElementAt(room.getTitle(), index);
  
@@ -139,6 +144,7 @@ public class RoomList extends JPanel
 
             list.setSelectedIndex(index);
             list.ensureIndexIsVisible(index);
+            
         }
  
         protected boolean alreadyInList(String name) {
