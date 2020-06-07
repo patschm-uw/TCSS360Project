@@ -1,7 +1,13 @@
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
@@ -115,4 +121,21 @@ public class Items {
         }
     }
     
+    /**
+     * Download the folder this Item is associated with to the user's Downloads folder
+     * @throws IOException 
+     */
+    public void downloadItem() throws IOException {
+        int count = 0;
+        JFrame frame = new JFrame();
+        String home = System.getProperty("user.home");
+        System.out.println(home);
+        String downloads = home + "\\Downloads\\";
+        for(String s : this.fileContent) {
+            uploadScreen.copyFile(path + "\\" + s, downloads + s);
+            count++;
+        }
+        String output = count + " files have been sent to your downloads folder";
+        JOptionPane.showMessageDialog(frame, output);
+    }
 }

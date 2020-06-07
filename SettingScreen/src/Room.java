@@ -1,5 +1,6 @@
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ import javax.swing.*;
 public class Room {
     
     /** List of Items in this room */
-    private LinkedList<Items> myItems;
+    private List<Items> myItems;
     
     /** Name of this room */
     private String title;
@@ -48,7 +49,7 @@ public class Room {
     /**
      * returns a list of Items in this room
      */
-    public LinkedList<Items> getItems() {
+    public List<Items> getItems() {
         return this.myItems;
     }
     
@@ -97,6 +98,20 @@ public class Room {
             JFrame frame = new JFrame();
             JOptionPane.showMessageDialog(frame, "This item does not exist in this room.");
             frame.setVisible(true);
+        }
+    }
+    
+    /**
+     * This method runs the Items download function for each item in the room if the user accepts
+     * @throws IOException 
+     */
+    public void downloadRoom() throws IOException {
+        JFrame frame = new JFrame();
+        int choice = JOptionPane.showConfirmDialog(frame, "This option may download many files to your PC, do you want to continue?");
+        if(choice == 0) {
+            for(Items i : this.myItems) {
+                i.downloadItem();
+            }
         }
     }
 }
