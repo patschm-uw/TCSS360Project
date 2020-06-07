@@ -21,6 +21,7 @@ public class HomeScreen implements ActionListener {
     private JTextArea ta;
     private uploadScreen uScreen;
     private About aScreen;
+    private RoomList list;
     
 	public HomeScreen() {
 		
@@ -51,6 +52,7 @@ public class HomeScreen implements ActionListener {
         upload = new JButton("Upload");
         panel.add(label); 
         panel.add(tf);
+        panel.add(list);
         panel.add(send);
         panel.add(about);
         about.addActionListener(this);
