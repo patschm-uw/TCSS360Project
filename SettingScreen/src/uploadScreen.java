@@ -93,7 +93,7 @@ public class uploadScreen extends JFrame{
         uploadW = new JButton("Website select");
         previewFile = new JButton("Open Files");
         uploadB = new JButton("Upload");
-        Back = new JButton("Back to previous page");
+        Back = new JButton("Back to Home page");
         start();
     }
     

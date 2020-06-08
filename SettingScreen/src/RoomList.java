@@ -1,7 +1,17 @@
+/**
+ * Show all the rooms in the house
+ * @author Kieu Trinh
+ * @Team Ocelot
+ * @Item version 
+ */
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -34,12 +44,13 @@ public class RoomList extends JPanel{
     private JTextField roomName;
     private JLabel roomN = new JLabel("Room: ");
     private int index;
-    File roomPath;
+    private File roomPath;
+    private RoomView room;
     
     public RoomList() {
     	super(new BorderLayout());
     	
-    	index =0;
+    	index = 0;
     	homePath = System.getProperty("user.dir") + File.separator + "HOME";
     	roomPath = new File(homePath);
     	
@@ -49,7 +60,25 @@ public class RoomList extends JPanel{
         
     	//Create the list and put it in a scroll pane.
     	listModel = new DefaultListModel<>();
-    	list = listSetUp();
+    	list = new JList<>(listModel);
+    	for(String s: roomPath.list()) {
+    		listModel.add(index, s);
+    		index++;
+    	}
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				//need to call the room class
+				String path = (String) System.getProperty("user.dir") + File.separator + "HOME";
+				String roomPath = path + File.separator + list.getSelectedValue();
+				HomeScreen home = new HomeScreen();
+				home.setVisible(false);
+				room = new RoomView(roomPath, list.getSelectedValue());
+				room.setVisible(true);
+				 //JOptionPane.showMessageDialog(null, "This file does exist");
+			}
+        });
         JScrollPane scrollPane = new JScrollPane(list);
         add(scrollPane, BorderLayout.CENTER);
         
@@ -68,22 +97,6 @@ public class RoomList extends JPanel{
         buttonPane.add(searchButton);
         buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         add(buttonPane, BorderLayout.NORTH);
-    }
-    
-    private JList<String> listSetUp() {
-    	for(String s: roomPath.list()) {
-    		listModel.add(index, s);
-    		index++;
-    	}
-        list = new JList<>(listModel);
-        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        list.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				//need to call the room class
-			}
-        });
-        return list;
     }
     
     private JButton add() {
@@ -126,16 +139,25 @@ public class RoomList extends JPanel{
 			public void actionPerformed(ActionEvent e) {
 				if(listModel.contains(roomName.getText())) {
 		            int index = listModel.indexOf(roomName.getText());
-		            list.setSelectedIndex(index);
-		           
+		            listModel.set(0, listModel.get(index));
 		        } else {
-		            list.clearSelection();
+		            
 			        JOptionPane.showMessageDialog(null, "File is not found");
 			         
 		        }
 			}
         });
         return searchButton;
+    }
+    public static void main(String[] args) {
+    	JFrame frame = new JFrame("Test");
+    	RoomList room = new RoomList();
+    	
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize.width, screenSize.height);
+        frame.setVisible(true);
+        frame.add(room);
     }
 
 
