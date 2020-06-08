@@ -25,7 +25,6 @@ public class RoomView extends JPanel
 	 * Default serial version ID
 	 */
 	private static final long serialVersionUID = 1L;
-	private static JPanel panel;
     private JButton deleteButton;
     private JButton addButton;
     private JList<Items> list;
@@ -61,9 +60,8 @@ public class RoomView extends JPanel
     buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
     
     
-    panel = new JPanel();
-    panel.add(listScrollPane, BorderLayout.CENTER);
-    panel.add(buttonPane, BorderLayout.PAGE_END);
+    add(listScrollPane, BorderLayout.CENTER);
+    add(buttonPane, BorderLayout.PAGE_END);
     
     }
     
