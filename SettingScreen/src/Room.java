@@ -1,6 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -30,7 +28,6 @@ public class Room implements ActionListener{
     /** File path of this room */
     private File file;
     
-    private static JFrame frame;
     private static JPanel panel;
     private JButton deleteButton;
     private JButton addButton;
@@ -63,8 +60,13 @@ public class Room implements ActionListener{
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane,
                                            BoxLayout.LINE_AXIS));
+        
         buttonPane.add(deleteButton);
+        buttonPane.add(Box.createHorizontalStrut(5));
+        buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
+        buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(addButton);
+        buttonPane.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
         
         
         panel = new JPanel();
@@ -77,7 +79,6 @@ public class Room implements ActionListener{
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource() == addButton) {
-        	frame.setVisible(false);
         	new uploadScreen();
         }
         if (e.getSource() == deleteButton) {
@@ -175,7 +176,7 @@ public class Room implements ActionListener{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  
         //Create and set up the content pane.
-        JComponent newContentPane = panel;
+        JComponent newContentPane = new Room(title, path);
         newContentPane.setOpaque(true); //content panes must be opaque
         frame.setContentPane(newContentPane);
  
