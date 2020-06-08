@@ -1,3 +1,7 @@
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -5,38 +9,88 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * The Room class manages a list of Items that it contains
  * @author Patrick Schmeichel
  * @Team Ocelot
  */
-public class Room {
+public class Room implements ActionListener{
     
     /** List of Items in this room */
     private List<Items> myItems;
     
     /** Name of this room */
-    private String title;
+    private static String title;
     
     /** String version of File path of this room */
-    private String path;
+    private static String path;
     
     /** File path of this room */
     private File file;
     
-    public Room(String t,String p) {
+    private static JFrame frame;
+    private static JPanel panel;
+    private JButton deleteButton;
+    private JButton addButton;
+    private JList<Items> list;
+    private DefaultListModel<Items> listModel;
+    
+    @SuppressWarnings("static-access")
+	public Room(String t,String p) {
         this.title = t;
         this.path = p;
         this.file = new File(p);
         myItems = new LinkedList<Items>();
+        
+        
+        listModel = new DefaultListModel<Items>();
+        
+        //Create the list and put it in a scroll pane.
+        list = new JList<Items>(listModel);
+        list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        list.setSelectedIndex(0);
+        list.addListSelectionListener((ListSelectionListener) this);
+        list.setVisibleRowCount(5);
+        JScrollPane listScrollPane = new JScrollPane(list);
+        
+        deleteButton = new JButton("Delete Item");
+        deleteButton.addActionListener(this);
+        addButton = new JButton("Add Item");
+        addButton.addActionListener(this);
+        
+        JPanel buttonPane = new JPanel();
+        buttonPane.setLayout(new BoxLayout(buttonPane,
+                                           BoxLayout.LINE_AXIS));
+        buttonPane.add(deleteButton);
+        buttonPane.add(addButton);
+        
+        
+        panel = new JPanel();
+        panel.add(listScrollPane, BorderLayout.CENTER);
+        panel.add(buttonPane, BorderLayout.PAGE_END);
+        
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        if (e.getSource() == addButton) {
+        	frame.setVisible(false);
+        	new uploadScreen();
+        }
+        if (e.getSource() == deleteButton) {
+        	deleteItem(list.getSelectedValue());
+          
+        }
     }
     
     /**
      * returns the title of this room
      */
     public String getTitle() {
-        return this.title;
+        return title;
     }
     
     /**
@@ -114,4 +168,28 @@ public class Room {
             }
         }
     }
+    
+    private static void createAndShowGUI() {
+        //Create and set up the window.
+        JFrame frame = new JFrame("Room View");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 
+        //Create and set up the content pane.
+        JComponent newContentPane = panel;
+        newContentPane.setOpaque(true); //content panes must be opaque
+        frame.setContentPane(newContentPane);
+ 
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
+    }
+ 
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                createAndShowGUI();
+            }
+        });
+    }
+	
 }
