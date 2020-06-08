@@ -149,7 +149,7 @@ public class RoomList extends JPanel{
         });
         return searchButton;
     }
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
     	JFrame frame = new JFrame("Test");
     	RoomList room = new RoomList();
     	
@@ -158,7 +158,7 @@ public class RoomList extends JPanel{
         frame.setSize(screenSize.width, screenSize.height);
         frame.setVisible(true);
         frame.add(room);
-    }
+    }*/
 
 
 	

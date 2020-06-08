@@ -133,25 +133,12 @@ public class RoomView extends JFrame
         }
     }
     
-    /*private static void createAndShowGUI() {
-        //Create and set up the window.
-        JFrame frame = new JFrame("Room View");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    
  
-        //Create and set up the content pane.
-        JComponent newContentPane = new RoomView("C:\\Users\\Kelly Trinh\\git\\TCSS360Project\\SettingScreen\\HOME\\TEST","TEST");
-        newContentPane.setOpaque(true); //content panes must be opaque
-        frame.setContentPane(newContentPane);
- 
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }*/
- 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         RoomView room = new RoomView("C:\\Users\\Kelly Trinh\\git\\TCSS360Project\\SettingScreen\\HOME\\TEST","TEST");
     	
-    }
+    }*/
     
 
 }
