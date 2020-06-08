@@ -1,6 +1,6 @@
 /**
  * Show all the rooms in the house
- * @author Kieu Trinh
+ * @author Kieu Trinh and Hamza Shanle
  * @Team Ocelot
  * @Item version 
  */

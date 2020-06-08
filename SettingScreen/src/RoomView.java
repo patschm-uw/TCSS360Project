@@ -1,6 +1,6 @@
 /**
  * showing all the file in selected folder/directory
- * @author Kieu Trinh, Hamza
+ * @author Kieu Trinh, Hamza Shanle
  * @Team Ocelot
  * @Item version 
  */
