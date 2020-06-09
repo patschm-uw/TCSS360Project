@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 /**
  * Home window that currently allows for uploading files and displaying an About screen
@@ -17,11 +18,12 @@ public class HomeScreen implements ActionListener {
     private JPanel panel;
     private JLabel label;
     private JTextField tf;
-    private JButton send, about, upload;
+    private JButton send, about, upload, settings,roomL;
     private JTextArea ta;
     private uploadScreen uScreen;
     private About aScreen;
     private RoomList list;
+    private SettingScreen sSetting;
     
 	public HomeScreen() {
 		
@@ -50,17 +52,24 @@ public class HomeScreen implements ActionListener {
         send = new JButton("Enter");
         about = new JButton("About");
         upload = new JButton("Upload");
+        settings = new JButton("Setting");
+        roomL = new JButton("Rooms");
         panel.add(label); 
         panel.add(tf);
-        panel.add(list);
+       // panel.add(list);
         panel.add(send);
         panel.add(about);
         about.addActionListener(this);
         panel.add(upload);
         upload.addActionListener(this);
+        panel.add(settings);
+        settings.addActionListener(this);
+        panel.add(roomL);
+        roomL.addActionListener(this);
         
         
         ta = new JTextArea();
+        ta.setBackground(Color.darkGray);
 
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
@@ -81,6 +90,15 @@ public class HomeScreen implements ActionListener {
             uScreen = new uploadScreen();
             uScreen.setVisible(true);
         }
+        if(e.getSource() == settings) {
+        	sSetting = new SettingScreen();
+        }
+        if(e.getSource() == roomL) {
+        	list = new RoomList();
+        	frame.getContentPane().add(list);
+        	frame.pack();
+        	frame.setVisible(true);
+        }
     }
     /**
      * Set the visible state of the frame
@@ -91,7 +109,15 @@ public class HomeScreen implements ActionListener {
 		
 	}
 
-	
+	public static void main(String [] args) {
+		new HomeScreen();
+		//create main folder
+		String path = "MainFolder";
+		File dir = new File(path);
+		if(!dir.exists()) {
+			dir.mkdir();
+		}
+	}
 }
 
 
