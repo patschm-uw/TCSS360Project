@@ -15,39 +15,32 @@ public class About {
 		JFrame frame = new JFrame("About");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(400, 400);
-		JPanel panel = new JPanel(); 
-		JButton close = new JButton("Close");
-		panel.add(close); 
-
-		// panel.add(version);   
+		JPanel panel = new JPanel();  
 		JTextArea ta = new JTextArea("This program displays information about the participants \n"
-				+ "and their contribution for Requirment Delivarable 1\n");
+				+ "and their contribution for Requirment Delivarable 1\n\n");
 		Font font = new Font("Arial", Font.BOLD, 14);
 		ta.setFont(font);
 		ta.append("Group Name:  Ocelots\n\n");
 		ta.append("Name and Contribution : \n");
-		ta.append("Hamza A Shanle: Contribution: Cover Page, "
+		ta.append("Hamza A Shanle: Cover Page, "
 				+ "Table of Content, and Summery Page \n\n");
 		ta.append("Name and Contribution : \n");
-		ta.append("Kieu Trinhution: Requirements Definition / Functional Specification \n\n");
+		ta.append("Kieu Trinh: Requirements Definition / Functional Specification \n\n");
 		ta.append("Name and Contribution : \n");
 		ta.append("Kezeba Yifat: Requirements Specification / Technical Specification\n\n");
 		ta.append("Name and Contribution : \n");
 		ta.append("Patrick Schmeichel: Story board / Paper Prototypes\n\n");  
+		ta.setBackground(Color.GRAY);
 		//Adding Components to the frame.
 		frame.getContentPane().add(BorderLayout.SOUTH, panel);
 		frame.getContentPane().add(BorderLayout.CENTER, ta);
-
 		frame.setVisible(true);
+		// call version class
 		VersionNumber version = new VersionNumber(null);
 		version.setVersion("Version1");
 		ta.append("Version: "+ version.getVersion());
-		close.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			}
-			
-		});
+		
+				
+		
 	}
 }
