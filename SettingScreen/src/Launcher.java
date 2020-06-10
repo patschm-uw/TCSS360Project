@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.FileSystem;
@@ -14,6 +15,11 @@ import java.nio.file.StandardCopyOption;
 public class Launcher {
     
     public static void main(String[] args) throws IOException {
-        HomeScreen Home = new HomeScreen();
+        HomeScreen home = new HomeScreen();
+        String path = "HOME";
+		File dir = new File(path);
+		if(!dir.exists()) {
+			dir.mkdir();
+		}
     }
 }
