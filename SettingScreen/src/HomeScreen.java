@@ -19,10 +19,10 @@ public class HomeScreen implements ActionListener {
     private JLabel label;
     private JTextField tf;
     private JButton send, about, upload, settings,roomL;
-    private JTextArea ta;
+    //private JTextArea ta;
     private uploadScreen uScreen;
     private About aScreen;
-    private RoomList list;
+    //private RoomList list;
     private SettingScreen sSetting;
     
 	public HomeScreen() {
@@ -68,13 +68,13 @@ public class HomeScreen implements ActionListener {
         roomL.addActionListener(this);
         
         
-        ta = new JTextArea();
-        ta.setBackground(Color.darkGray);
+        //ta = new JTextArea();
+        //ta.setBackground(Color.darkGray);
 
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, mb);
-        frame.getContentPane().add(BorderLayout.CENTER, ta);
+        frame.getContentPane().add(new RoomList(),BorderLayout.CENTER);
         frame.setVisible(true);
     }
 
@@ -93,12 +93,12 @@ public class HomeScreen implements ActionListener {
         if(e.getSource() == settings) {
         	sSetting = new SettingScreen();
         }
-        if(e.getSource() == roomL) {
+        /*if(e.getSource() == roomL) {
         	list = new RoomList();
         	frame.getContentPane().add(list);
         	frame.pack();
         	frame.setVisible(true);
-        }
+        }*/
     }
     /**
      * Set the visible state of the frame
@@ -112,12 +112,13 @@ public class HomeScreen implements ActionListener {
 	public static void main(String [] args) {
 		new HomeScreen();
 		//create main folder
-		String path = "MainFolder";
+		String path = "HOME";
 		File dir = new File(path);
 		if(!dir.exists()) {
 			dir.mkdir();
 		}
 	}
+	
 }
 
 
