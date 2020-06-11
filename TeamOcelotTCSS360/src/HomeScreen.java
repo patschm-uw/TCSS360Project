@@ -68,8 +68,8 @@ public class HomeScreen implements ActionListener {
         roomL.addActionListener(this);
         
         
-        ta = new JTextArea();
-        ta.setBackground(Color.darkGray);
+        //ta = new JTextArea();
+        frame.setBackground(Color.darkGray);
 
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
@@ -85,10 +85,10 @@ public class HomeScreen implements ActionListener {
             aScreen = new About();
         }
         if (e.getSource() == upload) {
-            
+            new Authorization();
             frame.setVisible(false);
-            uScreen = new uploadScreen();
-            uScreen.setVisible(true);
+            //uScreen = new uploadScreen();
+            //uScreen.setVisible(true);
         }
         if(e.getSource() == settings) {
         	sSetting = new SettingScreen();
@@ -108,16 +108,6 @@ public class HomeScreen implements ActionListener {
 		frame.setVisible(stage);
 		
 	}
-
-	/*public static void main(String [] args) {
-		new HomeScreen();
-		//create main folder
-		String path = "MainFolder";
-		File dir = new File(path);
-		if(!dir.exists()) {
-			dir.mkdir();
-		}
-	}*/
 }
 
 

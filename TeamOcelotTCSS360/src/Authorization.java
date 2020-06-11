@@ -45,12 +45,11 @@ public class Authorization implements ActionListener
         if(e.getSource() == enter) {
             String text = entry.getText();
             if(text.equalsIgnoreCase("Admin")) {// check and see if "admin" is typed
-                message.setText("Authorized!");
                 upload = new uploadScreen();
                 frame.dispose();
             }
             else {
-                message.setText("Unknown User");
+                JOptionPane.showMessageDialog(frame,"Unknown User!");
             }
         }
         if(e.getSource() == cancel) {
