@@ -34,7 +34,7 @@ public class ImportScreen extends JFrame {
 		panelTop.add(directoryText);
 		panelBottom.add(Ok);
 		panelTop.add(browse);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		add(panelTop, BorderLayout.CENTER);
 		add(panelBottom, BorderLayout.AFTER_LAST_LINE);
 		setTitle("Import Setting");

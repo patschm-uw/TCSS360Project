@@ -1,6 +1,7 @@
 /**
+ * this class will be our setting screen in which 
+ * importing and exporting setting 
  * @author Hamza Shanle
- *
  */
 
 import java.awt.*;
@@ -13,15 +14,19 @@ public class SettingScreen extends JFrame implements ActionListener {
 	 * serialVerison
 	 */
 	private static final long serialVersionUID = 1L;
+	// window variables.
 	private JPanel panel1;
     private JPanel panel2;
+    //Jlabel for the name and email info.
     private JLabel name_label, email_label;
+    // the textfields to get name and email.
     private JTextField name_text;
     private JTextField email_text;
+    //Buttons to either import or export settings.
     private JButton recieve;
     private JButton export;
-    private ImportScreen iScreen;
-    private ExportScreen eScreen;
+    
+    
    SettingScreen() {
       // Name Label
       name_label = new JLabel();
@@ -46,7 +51,7 @@ public class SettingScreen extends JFrame implements ActionListener {
       recieve.addActionListener(this);
       
       
-      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
       add(panel1, BorderLayout.CENTER);
       add(panel2, BorderLayout.AFTER_LAST_LINE);
       setTitle("Setting Screen");
@@ -56,10 +61,10 @@ public class SettingScreen extends JFrame implements ActionListener {
 	  @Override
 	  public void actionPerformed(ActionEvent e) {
 		  if (e.getSource() == recieve) {
-			  iScreen = new ImportScreen();
+			  new ImportScreen();
 		  }
 		  if (e.getSource() == export) {
-			  eScreen = new ExportScreen();
+			  new ExportScreen();
 		  }
 	  }	
 

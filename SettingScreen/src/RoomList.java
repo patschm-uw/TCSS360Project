@@ -5,28 +5,21 @@
  * @Item version 
  */
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -37,10 +30,11 @@ public class RoomList extends JPanel{
 	private JList<String> list;
     private final DefaultListModel<String> listModel;
     private String homePath;
-
+    // Buttons to add, search and delete rooms
     private JButton addButton; 
     private JButton deleteButton;
     private JButton searchButton;
+    // Fields to get the info to make a room
     private JTextField roomName;
     private JLabel roomN = new JLabel("Room: ");
     private int index;
@@ -84,9 +78,6 @@ public class RoomList extends JPanel{
         
         JPanel buttonPane = new JPanel();
         buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
-        //buttonPane.add(Box.createHorizontalStrut(5));
-        //buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
-        //buttonPane.add(Box.createHorizontalStrut(5));
         buttonPane.add(roomN);
         buttonPane.add(roomName);
         addButton = add();
@@ -149,17 +140,5 @@ public class RoomList extends JPanel{
         });
         return searchButton;
     }
-    /*public static void main(String[] args) {
-    	JFrame frame = new JFrame("Test");
-    	RoomList room = new RoomList();
-    	
-    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(screenSize.width, screenSize.height);
-        frame.setVisible(true);
-        frame.add(room);
-    }*/
-
-
 	
 }

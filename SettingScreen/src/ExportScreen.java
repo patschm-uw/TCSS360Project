@@ -3,13 +3,19 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 /**
- * very basic export screen, no functionality yet
+ * very basic export screen, no functionality.
  * @author Patrick Schmeichel
  *
  */
 public class ExportScreen extends JFrame
 {
-    private final int HEIGHT = 150, WIDTH = 300;
+    /**
+	 * default serial version ID
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	// fields to create the export screen
+	private final int HEIGHT = 150, WIDTH = 300;
     private JPanel ScreenA, ScreenB;
     private JLabel filename, message;
     private JTextField enter_name;
@@ -30,7 +36,7 @@ public class ExportScreen extends JFrame
         ScreenA.add(message);
         ScreenB.add(ok);
         ScreenB.add(cancel);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         add(ScreenA, BorderLayout.CENTER);
         add(ScreenB, BorderLayout.SOUTH);
         setTitle("Export Settings");
