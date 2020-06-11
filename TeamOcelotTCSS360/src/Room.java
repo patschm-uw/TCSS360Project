@@ -94,6 +94,7 @@ public class Room {
                     item.deleteFile(s);
                 }
                 item.getFile().delete();
+                this.getItems().remove(i);
             }
         } else {// otherwise display error message
             JFrame frame = new JFrame();

@@ -129,7 +129,6 @@ public class Items {
         int count = 0;
         JFrame frame = new JFrame();
         String home = System.getProperty("user.home");
-        System.out.println(home);
         String downloads = home + "\\Downloads\\";
         for(String s : this.fileContent) {
             uploadScreen.copyFile(path + "\\" + s, downloads + s);
