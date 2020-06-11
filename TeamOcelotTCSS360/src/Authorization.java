@@ -3,7 +3,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-
+/**
+ * Checks to see if the user is an Admin, currently only checks if "Admin" is typed
+ * into the text box, which sets the Admin flag to true. The guest option allows the
+ * user through yet keeps the flag false.
+ * @author Patrick Schmeichel
+ * @Team Ocelot
+ * @Version final
+ */
 public class Authorization implements ActionListener
 {
     private final int HEIGHT = 150, WIDTH = 300;
@@ -11,8 +18,9 @@ public class Authorization implements ActionListener
     private JPanel panelA, panelB;
     private JTextArea message;
     private JTextField entry;
-    private JButton enter, cancel;
-    private uploadScreen upload;
+    private JButton enter, cancel, guest;
+    private uploadScreen uScreen;
+    private boolean Admin = false;
     
     public Authorization() {
         frame = new JFrame("Authorization");
@@ -28,11 +36,14 @@ public class Authorization implements ActionListener
         enter.addActionListener(this);
         cancel = new JButton("Cancel");
         cancel.addActionListener(this);
+        guest = new JButton("Guest");
+        guest.addActionListener(this);
         
         panelA.add(message);
         panelA.add(entry);
         panelB.add(enter);
         panelB.add(cancel);
+        panelB.add(guest);
         
         frame.getContentPane().add(BorderLayout.NORTH,panelA);
         frame.getContentPane().add(BorderLayout.SOUTH,panelB);
@@ -45,15 +56,27 @@ public class Authorization implements ActionListener
         if(e.getSource() == enter) {
             String text = entry.getText();
             if(text.equalsIgnoreCase("Admin")) {// check and see if "admin" is typed
-                upload = new uploadScreen();
+                Admin = true;
                 frame.dispose();
             }
-            else {
+            else {// otherwise gives an error
                 JOptionPane.showMessageDialog(frame,"Unknown User!");
             }
         }
         if(e.getSource() == cancel) {
             frame.dispose();
         }
+        if(e.getSource() == guest) {
+            Admin = false;
+            frame.dispose();
+        }
+    }
+    
+    /**
+     * Returns whether or not the user is an admin or not
+     * @return Admin
+     */
+    public boolean isAdmin() {
+        return Admin;
     }
 }

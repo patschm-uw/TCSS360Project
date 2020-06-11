@@ -19,18 +19,18 @@ public class HomeScreen implements ActionListener {
     private JLabel label;
     private JTextField tf;
     private JButton send, about, upload, settings;
-    //private JTextArea ta;
     private uploadScreen uScreen;
     private About aScreen;
     protected RoomList rlist;
     private SettingScreen sSetting;
+    private Authorization auth;
+    private boolean Admin = false;
     
 	public HomeScreen() {
 		
         //Creating the Frame
         frame = new JFrame("Home");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.setSize(400, 400);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(screenSize.width, screenSize.height);
         frame.setVisible(true);
@@ -66,6 +66,7 @@ public class HomeScreen implements ActionListener {
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, mb);
         frame.setVisible(true);
+        auth = new Authorization();
     }
 
     @Override
@@ -75,10 +76,14 @@ public class HomeScreen implements ActionListener {
             aScreen = new About();
         }
         if (e.getSource() == upload) {
-            
-            frame.setVisible(false);
-            uScreen = new uploadScreen();
-            uScreen.setVisible(true);
+            Admin = auth.isAdmin();// checks if user is an admin
+            if(Admin) {// allows upload if true
+                uScreen = new uploadScreen();
+                uScreen.setVisible(true);
+            }
+            else {// error if false
+                JOptionPane.showMessageDialog(frame, "Only an Admin can use this feature");
+            }
         }
         if(e.getSource() == settings) {
         	sSetting = new SettingScreen();
@@ -92,25 +97,4 @@ public class HomeScreen implements ActionListener {
 		frame.setVisible(stage);
 		
 	}
-
-	/*public static void main(String [] args) {
-		new HomeScreen();
-		//create main folder
-		String path = "HOME";
-		File dir = new File(path);
-		if(!dir.exists()) {
-			dir.mkdir();
-		}
-		RoomList rlist = new RoomList();
-		String path = (String) System.getProperty("user.dir") + File.separator + "HOME";
-		path = path.replace(File.separator, "\\\\");
-		
-		String roomPath = path + File.separator + rlist.getList().getSelectedValue();
-		System.out.println(path);
-		System.out.println(rlist.getList().getSelectedValue());
-		
-	}
-	*/
 }
-
-

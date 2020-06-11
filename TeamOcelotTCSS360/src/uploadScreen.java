@@ -82,7 +82,7 @@ public class uploadScreen extends JFrame{
     	setTitle("Upload Screen");
         setVisible(true);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(screenSize.width, screenSize.height);
+        setSize(screenSize.width-200, screenSize.height-100);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
         review = new JTextArea("No file select");
@@ -256,10 +256,9 @@ public class uploadScreen extends JFrame{
         	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				HomeScreen prev = new HomeScreen(); 
-				prev.setVisible(true);
-				
+			    setVisible(false);
+				//HomeScreen prev = new HomeScreen(); 
+				//prev.setVisible(true);
 			}
         
         });
