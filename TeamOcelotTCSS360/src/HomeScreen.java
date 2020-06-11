@@ -11,18 +11,18 @@ import java.io.File;
  */
 public class HomeScreen implements ActionListener {
     
-    private JFrame frame;
+    protected JFrame frame;
     private JMenuBar mb;
     private JMenu m1, m2;
     private JMenuItem m11, m22;
     private JPanel panel;
     private JLabel label;
     private JTextField tf;
-    private JButton send, about, upload, settings,roomL;
-    private JTextArea ta;
+    private JButton send, about, upload, settings;
+    //private JTextArea ta;
     private uploadScreen uScreen;
     private About aScreen;
-    private RoomList list;
+    protected RoomList rlist;
     private SettingScreen sSetting;
     
 	public HomeScreen() {
@@ -53,10 +53,8 @@ public class HomeScreen implements ActionListener {
         about = new JButton("About");
         upload = new JButton("Upload");
         settings = new JButton("Setting");
-        roomL = new JButton("Rooms");
         panel.add(label); 
         panel.add(tf);
-       // panel.add(list);
         panel.add(send);
         panel.add(about);
         about.addActionListener(this);
@@ -64,17 +62,9 @@ public class HomeScreen implements ActionListener {
         upload.addActionListener(this);
         panel.add(settings);
         settings.addActionListener(this);
-        panel.add(roomL);
-        roomL.addActionListener(this);
-        
-        
-        //ta = new JTextArea();
-        frame.setBackground(Color.darkGray);
-
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, mb);
-        frame.getContentPane().add(BorderLayout.CENTER, ta);
         frame.setVisible(true);
     }
 
@@ -85,19 +75,13 @@ public class HomeScreen implements ActionListener {
             aScreen = new About();
         }
         if (e.getSource() == upload) {
-            new Authorization();
+            
             frame.setVisible(false);
-            //uScreen = new uploadScreen();
-            //uScreen.setVisible(true);
+            uScreen = new uploadScreen();
+            uScreen.setVisible(true);
         }
         if(e.getSource() == settings) {
         	sSetting = new SettingScreen();
-        }
-        if(e.getSource() == roomL) {
-        	list = new RoomList();
-        	frame.getContentPane().add(list);
-        	frame.pack();
-        	frame.setVisible(true);
         }
     }
     /**
@@ -108,6 +92,25 @@ public class HomeScreen implements ActionListener {
 		frame.setVisible(stage);
 		
 	}
+
+	/*public static void main(String [] args) {
+		new HomeScreen();
+		//create main folder
+		String path = "HOME";
+		File dir = new File(path);
+		if(!dir.exists()) {
+			dir.mkdir();
+		}
+		RoomList rlist = new RoomList();
+		String path = (String) System.getProperty("user.dir") + File.separator + "HOME";
+		path = path.replace(File.separator, "\\\\");
+		
+		String roomPath = path + File.separator + rlist.getList().getSelectedValue();
+		System.out.println(path);
+		System.out.println(rlist.getList().getSelectedValue());
+		
+	}
+	*/
 }
 
 
