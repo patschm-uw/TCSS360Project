@@ -6,7 +6,7 @@ import java.io.File;
 
 /**
  * Home window that currently allows for uploading files and displaying an About screen
- * @author Hamza Shanle and Patrick Schmeichel
+ * @author Hamza Shanle, Patrick Schmeichel, Kieu Trinh 
  *
  */
 public class HomeScreen implements ActionListener {
