@@ -1,39 +1,30 @@
-/**
- * Show all the rooms in the house
- * @author Kieu Trinh and Hamza Shanle
- * @Team Ocelot
- * @Item version 
- */
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-
-
+/**
+* Show all the rooms in the house
+* @author Kieu Trinh and Hamza Shanle
+* @Team Ocelot
+* @Item version 
+*/
 public class RoomList extends HomeScreen{
 	private static final long serialVersionUID = 1L;
 	private JPanel roomPanel;
@@ -107,10 +98,11 @@ public class RoomList extends HomeScreen{
     	}
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.addListSelectionListener(new ListSelectionListener() {
-			@Override
-			public void valueChanged(ListSelectionEvent e) {
-				selectedPath = homePath + File.separator + list.getSelectedValue();
-			}
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                selectedPath = homePath + File.separator + "TEST";
+                selectedPath = homePath + File.separator + list.getSelectedValue();
+            }
         });
         //open the room by double click the item
         list.addMouseListener(new MouseAdapter() {
@@ -153,15 +145,16 @@ public class RoomList extends HomeScreen{
         addButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				File newRoom = new File(homePath + File.separator + roomName.getText());
-				if(!listModel.contains(roomName.getText())) {
-					newRoom.mkdirs(); // create new folder in the main folder
-					listModel.add(index,roomName.getText());
-					roomName.setText("");
-					index++;
-				}else {
-			         JOptionPane.showMessageDialog(null, "This file does exist");
-				}
+			    File newRoom = new File(homePath + File.separator + roomName.getText());
+                if(!listModel.contains(roomName.getText())) {
+                    newRoom.mkdirs(); // create new folder in the main folder
+                    listModel.add(index,roomPath.list()[index]);
+                    listModel.add(index,roomName.getText());
+                    roomName.setText("");
+                    index++;
+                }else {
+                     JOptionPane.showMessageDialog(null, "This file does exist");
+                }
 			}
         });
         
@@ -211,7 +204,4 @@ public class RoomList extends HomeScreen{
         });
         return searchButton;
     }
-
-
-	
 }

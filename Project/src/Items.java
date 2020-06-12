@@ -11,7 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
- * I tems class list out all the item from the folder path.
+ * Items class that lists out all the items from the folder path.
  * @author Kieu Trinh
  * @Team Ocelot
  * @Item version 
@@ -28,7 +28,7 @@ public class Items {
     /**
      * The list string contain all the name of the item in the folder
      */
-    List<String> fileContent;
+    private List<String> fileContent;
     /**
      * file the folder path
      */
@@ -50,12 +50,11 @@ public class Items {
      * @return list fileContent
      */
     public List<String> getItemList(){
-    	if(file.list().length > 0) {
-    		for(String content : file.list()) {
+        if(file.list().length > 0) {
+            for(String content : file.list()) {
                 fileContent.add(content);
             }
-    	}
-        
+        }
         return fileContent;
     }
     /**
@@ -132,7 +131,6 @@ public class Items {
         int count = 0;
         JFrame frame = new JFrame();
         String home = System.getProperty("user.home");
-        System.out.println(home);
         String downloads = home + "\\Downloads\\";
         for(String s : this.fileContent) {
             uploadScreen.copyFile(path + "\\" + s, downloads + s);
