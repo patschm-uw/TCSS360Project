@@ -20,7 +20,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 /**
- * showing all the file in selected folder/directory
+ * GUI class for roomlist, showing all the file in selected folder/directory
  * @author Kieu Trinh, Hamza Shanle
  * @Team Ocelot
  * @Item version 
@@ -29,22 +29,32 @@ public class RoomView extends JFrame
                       implements ActionListener {
 	
     /**
-	 * Default serial version ID
-	 */
-	private static final long serialVersionUID = 1L;
-	private String path;
+     * Default serial version ID.
+     */
+    private static final long serialVersionUID = 1L;
+    // Variable for the computer path for to store the room's content.
+    private String path;
+    //Buttons for delete and add room.
     private JButton deleteButton;
     private JButton addButton;
+    //Button for downloading a room.
     private JButton download;
+    //button to go back from roomlist to home.
     private JButton backButton;
+    //Variables for list of rooms.
     private JList<String> list;
     private DefaultListModel<String> listModel;
     private Dimension screenSize;
+    //private File roomPath;
+    //variables for the item in room.
     private Items roomItem;
-    private int index;
     
+    /**
+     * Constructor of RoomView
+     * @param path, the computer path of the room in computer directory.
+     * @param name, the name of room.
+     */
     public RoomView(String path, String name) {
-        index = 0;
         this.path = path;
         roomItem = new Items(path, name); 
         //roomPath = new File(path);
@@ -79,6 +89,7 @@ public class RoomView extends JFrame
         list.setVisibleRowCount(5);
         JScrollPane listScrollPane = new JScrollPane(list);
         
+        //creating and implementing buttons
         deleteButton = new JButton("Delete Item");
         deleteButton.addActionListener(this);
         addButton = new JButton("Add Item");
@@ -90,6 +101,7 @@ public class RoomView extends JFrame
         
         JPanel buttonPane = new JPanel();
         
+        //construct RoomView window
         GridLayout layout = new GridLayout();
         layout.setHgap(25);
         buttonPane.setLayout(layout);
@@ -106,6 +118,7 @@ public class RoomView extends JFrame
         setVisible(true);
     }
     
+    /** actions for button presses */
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource() == addButton) {
@@ -130,6 +143,7 @@ public class RoomView extends JFrame
         }
     }
     
+    //ListSelection required
     public void valueChanged(ListSelectionEvent e) {
         if (e.getValueIsAdjusting() == false) {
 
