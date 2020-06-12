@@ -148,7 +148,6 @@ public class RoomList extends HomeScreen{
 			    File newRoom = new File(homePath + File.separator + roomName.getText());
                 if(!listModel.contains(roomName.getText())) {
                     newRoom.mkdirs(); // create new folder in the main folder
-                    listModel.add(index,roomPath.list()[index]);
                     listModel.add(index,roomName.getText());
                     roomName.setText("");
                     index++;
