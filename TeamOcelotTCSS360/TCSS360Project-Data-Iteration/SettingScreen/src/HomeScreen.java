@@ -6,31 +6,31 @@ import java.io.File;
 
 /**
  * Home window that currently allows for uploading files and displaying an About screen
- * @author Hamza Shanle, Patrick Schmeichel, Kieu Trinh 
- * @Team Ocleot
+ * @author Hamza Shanle and Patrick Schmeichel
+ *
  */
 public class HomeScreen implements ActionListener {
     
-    protected JFrame frame;
+    private JFrame frame;
     private JMenuBar mb;
     private JMenu m1, m2;
     private JMenuItem m11, m22;
     private JPanel panel;
     private JLabel label;
     private JTextField tf;
-    private JButton send, about, upload, settings;
+    private JButton send, about, upload, settings,roomL;
+    private JTextArea ta;
     private uploadScreen uScreen;
     private About aScreen;
-    protected RoomList rlist;
+    private RoomList list;
     private SettingScreen sSetting;
-    private Authorization auth;
-    private boolean Admin = false;
     
 	public HomeScreen() {
 		
         //Creating the Frame
         frame = new JFrame("Home");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setSize(400, 400);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(screenSize.width, screenSize.height);
         frame.setVisible(true);
@@ -53,8 +53,10 @@ public class HomeScreen implements ActionListener {
         about = new JButton("About");
         upload = new JButton("Upload");
         settings = new JButton("Setting");
+        roomL = new JButton("Rooms");
         panel.add(label); 
         panel.add(tf);
+       // panel.add(list);
         panel.add(send);
         panel.add(about);
         about.addActionListener(this);
@@ -62,11 +64,18 @@ public class HomeScreen implements ActionListener {
         upload.addActionListener(this);
         panel.add(settings);
         settings.addActionListener(this);
+        panel.add(roomL);
+        roomL.addActionListener(this);
+        
+        
+        //ta = new JTextArea();
+        frame.setBackground(Color.darkGray);
+
         //Adding Components to the frame.
         frame.getContentPane().add(BorderLayout.SOUTH, panel);
         frame.getContentPane().add(BorderLayout.NORTH, mb);
+        frame.getContentPane().add(BorderLayout.CENTER, ta);
         frame.setVisible(true);
-        auth = new Authorization();
     }
 
     @Override
@@ -76,17 +85,19 @@ public class HomeScreen implements ActionListener {
             aScreen = new About();
         }
         if (e.getSource() == upload) {
-            Admin = auth.isAdmin();// checks if user is an admin
-            if(Admin) {// allows upload if true
-                uScreen = new uploadScreen();
-                uScreen.setVisible(true);
-            }
-            else {// error if false
-                JOptionPane.showMessageDialog(frame, "Only an Admin can use this feature");
-            }
+            new Authorization();
+            frame.setVisible(false);
+            //uScreen = new uploadScreen();
+            //uScreen.setVisible(true);
         }
         if(e.getSource() == settings) {
         	sSetting = new SettingScreen();
+        }
+        if(e.getSource() == roomL) {
+        	list = new RoomList();
+        	frame.getContentPane().add(list);
+        	frame.pack();
+        	frame.setVisible(true);
         }
     }
     /**
@@ -98,3 +109,5 @@ public class HomeScreen implements ActionListener {
 		
 	}
 }
+
+

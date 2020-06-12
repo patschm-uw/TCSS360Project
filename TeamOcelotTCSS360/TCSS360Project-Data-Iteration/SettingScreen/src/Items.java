@@ -11,7 +11,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 /**
- * Items class that lists out all the items from the folder path.
+ * I tems class list out all the item from the folder path.
  * @author Kieu Trinh
  * @Team Ocelot
  * @Item version 
@@ -129,6 +129,7 @@ public class Items {
         int count = 0;
         JFrame frame = new JFrame();
         String home = System.getProperty("user.home");
+        System.out.println(home);
         String downloads = home + "\\Downloads\\";
         for(String s : this.fileContent) {
             uploadScreen.copyFile(path + "\\" + s, downloads + s);

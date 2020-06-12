@@ -1,13 +1,14 @@
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.*;
 /**
  * this class will be our setting screen in which 
  * importing and exporting setting 
  * @author Hamza Shanle
  */
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
 public class SettingScreen extends JFrame implements ActionListener {
    /**
 	 * serialVerison
@@ -65,5 +66,9 @@ public class SettingScreen extends JFrame implements ActionListener {
 		  if (e.getSource() == export) {
 			  new ExportScreen();
 		  }
-	  }
+	  }	
+
+   public static void main(String[] args) {
+      new SettingScreen();
+   }
 }

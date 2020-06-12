@@ -1,3 +1,9 @@
+/**
+ * showing all the file in selected folder/directory
+ * @author Kieu Trinh, Hamza Shanle
+ * @Team Ocelot
+ * @Item version 
+ */
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -10,17 +16,12 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
-/**
- * showing all the file in selected folder/directory
- * @author Kieu Trinh, Hamza Shanle
- * @Team Ocelot
- * @Item version 
- */
+
+
 public class RoomView extends JFrame
                       implements ActionListener {
 	
@@ -31,7 +32,6 @@ public class RoomView extends JFrame
 	private String path;
     private JButton deleteButton;
     private JButton addButton;
-    private JButton searchButton;
     private JButton backButton;
     private JList<String> list;
     private DefaultListModel<String> listModel;
@@ -64,26 +64,21 @@ public class RoomView extends JFrame
     backButton.addActionListener(this);
     
     JPanel buttonPane = new JPanel();
-    //buttonPane.setLayout(new BoxLayout(buttonPane,BoxLayout.LINE_AXIS));
+
     
     GridLayout layout = new GridLayout();
     layout.setHgap(25);
-    //buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.X_AXIS));
+
     buttonPane.setLayout(layout);
     buttonPane.add(addButton);
     buttonPane.add(deleteButton);
-    //buttonPane.add(Box.createHorizontalStrut(5));
-    //buttonPane.add(new JSeparator(SwingConstants.VERTICAL));
-    //buttonPane.add(Box.createHorizontalStrut(5));
-    
-    //buttonPane.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
     buttonPane.add(backButton);
     
     screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     setSize(screenSize.width, screenSize.height);
     add(listScrollPane, BorderLayout.CENTER);
     add(buttonPane, BorderLayout.PAGE_END);
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setVisible(true);
     }
     
@@ -105,16 +100,6 @@ public class RoomView extends JFrame
         	HomeScreen home = new HomeScreen();
         	home.setVisible(true);
         }
-        /*if(e.getSource() == searchButton) {
-        	if(listModel.contains(roomName.getText())) {
-	            int index = listModel.indexOf(roomName.getText());
-	            listModel.set(0, listModel.get(index));
-	        } else {
-	            
-		        JOptionPane.showMessageDialog(null, "File is not found");
-		         
-	        }
-        }*/
     }
     
     public void valueChanged(ListSelectionEvent e) {

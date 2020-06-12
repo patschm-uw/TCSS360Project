@@ -15,6 +15,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+
+
+
 /**
  * @author Kieu Trinh and Patrick Schmeichel
  * @Team Ocelot
@@ -79,7 +82,7 @@ public class uploadScreen extends JFrame{
     	setTitle("Upload Screen");
         setVisible(true);
         screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        setSize(screenSize.width-200, screenSize.height-100);
+        setSize(screenSize.width, screenSize.height);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
         review = new JTextArea("No file select");
@@ -253,9 +256,10 @@ public class uploadScreen extends JFrame{
         	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			    setVisible(false);
-				//HomeScreen prev = new HomeScreen(); 
-				//prev.setVisible(true);
+				setVisible(false);
+				HomeScreen prev = new HomeScreen(); 
+				prev.setVisible(true);
+				
 			}
         
         });
@@ -310,7 +314,7 @@ class DrawingImages extends JFrame{
         getContentPane().add(jLabel, BorderLayout.CENTER);
         
         setSize(new Dimension(400,400));
-        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setVisible(true);
 		pack();
 		setLocationRelativeTo(null);
