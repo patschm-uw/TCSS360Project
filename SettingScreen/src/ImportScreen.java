@@ -3,15 +3,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.*;
+/**
+ * Window that allows user to import settings from a local file
+ * @author Kezeba Yifat
+ * @Team Ocelot
+ */
 public class ImportScreen extends JFrame {
 	/** File opener to browse directory. */
 	private JFileChooser myFileChooser;
 	/**
 	 * serialVerison
 	 */
-	public static void main(String[] args) {
-		new ImportScreen();
-	} 
 	private static final long serialVersionUID = 1L;
 	JPanel panelTop;
 	JPanel panelBottom;
@@ -69,5 +71,3 @@ public class ImportScreen extends JFrame {
 
 
 }	
-
-

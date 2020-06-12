@@ -3,9 +3,9 @@ import java.awt.BorderLayout;
 import javax.swing.*;
 
 /**
- * very basic export screen, no functionality.
- * @author Patrick Schmeichel
- *
+ * very basic export screen, no functionality at the moment.
+ * @author Patrick Schmeichel and Hamza Shanle
+ * @Team Ocelot
  */
 public class ExportScreen extends JFrame
 {
